@@ -68,9 +68,9 @@ class EasyRiderStage4(StageTest):
             query = "".join(["[\\D]*" + str(len(result[x])) + "".join(["[\\D]*" + str(result[x][y]) for y in range(len(result[x]))]) for x in range(len(result))])
         if not re.match(rf'^{query}', reply.strip()):
             if isinstance(result, int):
-                return CheckResult.wrong(f"There is incorrectly marked stop.")
+                return CheckResult.wrong(f"There is incorrectly marked stop. Take a closer look at line {result}.")
             else:
-                return CheckResult.wrong(f"Invalid number of stops detected.")
+                return CheckResult.wrong(f"Invalid number of stops detected. Expected stops: \nStart stops {result[0]}, \nTransfer stops {result[1]}, \nFinish stops {result[2]}")
         return CheckResult.correct()
 
 

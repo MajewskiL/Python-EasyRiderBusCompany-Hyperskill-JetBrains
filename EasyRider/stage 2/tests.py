@@ -78,7 +78,7 @@ class EasyRiderStage2(StageTest):
     def check(self, reply: str, result) -> CheckResult:
         query = "".join(["[\\D]*" + str(result[x]) for x in range(4)])
         if not re.match(rf'^{query}$', reply.strip()):
-            return CheckResult.wrong(f"A wrong number of bugs were detected.")
+            return CheckResult.wrong(f"A wrong number of bugs were detected. Expected values {result}")
         return CheckResult.correct()
 
 

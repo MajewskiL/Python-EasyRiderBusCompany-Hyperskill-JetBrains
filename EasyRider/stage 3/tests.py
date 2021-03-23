@@ -51,7 +51,7 @@ class EasyRiderStage3(StageTest):
         for x in range(result[2]):
             query = str(result[0][x]) + "[\\D]*" + str(result[1][x])
             if not re.search(rf'{query}', reply.strip()):
-                return CheckResult.wrong(f"Wrong number of stops detected.")
+                return CheckResult.wrong(f"Wrong number of stops detected. Expected lines {result[0]}, with {result[1]} stops")
         return CheckResult.correct()
 
 
