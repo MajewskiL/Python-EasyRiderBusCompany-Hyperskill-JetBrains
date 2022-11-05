@@ -1,6 +1,7 @@
 from hstest.stage_test import *
 from hstest.test_case import TestCase
 import re
+# last changes made by Stepik
 
 
 class EasyRiderStage6(StageTest):
