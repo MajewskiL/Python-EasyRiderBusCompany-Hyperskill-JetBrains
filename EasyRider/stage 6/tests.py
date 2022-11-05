@@ -62,13 +62,19 @@ class EasyRiderStage6(StageTest):
     def check(self, reply: str, result) -> CheckResult:
         if isinstance(result, str):
             if result not in reply:
-                return CheckResult.wrong(f"Wrong number of bugs detected or wrong output format. Expected '{result}'..")
+                return CheckResult.wrong(f"Wrong number of bugs detected or the output format is wrong. "
+                                         "Expected output:\n\n"
+                                         "On demand stops test:\n"
+                                         f"Wrong stop type: {result}")
         else:
             query = rf"['{result[0]}[\W]+{result[1]}']"
             if not re.search(rf'{query}', reply):
-                return CheckResult.wrong(f"Wrong number of bugs detected or wrong output format. Expected {result}'")
+                return CheckResult.wrong(f"Wrong number of bugs detected or the output format is wrong. "
+                                         "Expected output:\n\n" 
+                                         "On demand stops test:\n"
+                                         f"Wrong stop type: {list(result)}")
         return CheckResult.correct()
 
 
 if __name__ == '__main__':
-    EasyRiderStage6('easyrider.easyrider2').run_tests()
+    EasyRiderStage6('easyrider.easyrider').run_tests()
